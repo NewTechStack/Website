@@ -1,0 +1,43 @@
+version: '3'
+
+networks:
+  proxy:
+    external:
+        name: nginx_proxy
+
+services:
+  landing:
+    image: nginx
+    container_name: landing
+    restart: always
+    volumes:
+      - ./front/web/front:/usr/share/nginx/html:ro
+      - ./front/web/conf/landing.conf:/etc/nginx/conf.d/default.conf:ro
+    links:
+      - error
+      - php
+    networks:
+      - proxy
+    environment:
+      VIRTUAL_HOST: www.${DOMAIN}, ${DOMAIN}
+      VIRTUAL_PORT: 80
+      LETSENCRYPT_HOST: ${DOMAIN}
+      LETSENCRYPT_EMAIL: ${EMAIL}
+
+  php:
+    image: php:fpm-alpine
+    container_name: php
+    volumes:
+      - ./front/web/front:/script:ro
+    networks:
+      - proxy
+
+  error:
+    image: nginx
+    container_name: error
+    restart: always
+    volumes:
+      - ./front/error/front:/usr/share/nginx/html:ro
+      - ./front/error/conf/error.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - proxy

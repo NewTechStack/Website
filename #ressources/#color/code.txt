@@ -1,0 +1,5 @@
+bright to dark:
+
+#1c94fe
+#00428D
+#211266
