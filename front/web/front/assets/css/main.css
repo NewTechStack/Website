@@ -3927,3 +3927,37 @@ input, select, textarea {
 			}
 
 		}
+
+.clients {
+	width: 100% !important;
+	text-align: center;
+}
+
+.clients h3 {
+	font-size: 1.9em;
+}
+
+section.clients > div:nth-child(2) {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin-left: 5%;
+}
+
+
+section.clients > div:nth-child(3) {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin-left: 20%;
+}
+
+section.clients > div:nth-child(2) > img {
+    width: 30%;
+    padding: 2px;
+}
+
+section.clients > div:nth-child(3) > img {
+    width: 30%;
+    padding: 20px;
+}
