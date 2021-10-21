@@ -2002,7 +2002,7 @@ input, select, textarea {
 	}
 
 	#one {
-		height: 100vh;
+		min-height: 100vh;
 	}
 
 		.features section {
@@ -3009,7 +3009,7 @@ input, select, textarea {
 		-webkit-flex-direction: row;
 		-ms-flex-direction: row;
 		flex-direction: row;
-		min-height: 22.5em;
+		min-height: 17em;
 	}
 
 		body.is-ie .spotlights > section {
@@ -3260,7 +3260,7 @@ input, select, textarea {
 			background-color: #ffff;
 		}
 
-		.style2 {
+		#one, .style2 {
 			background-color: #1c94fe;;
 		}
 
@@ -3312,7 +3312,7 @@ input, select, textarea {
 
 				.wrapper.fullscreen {
 					padding: 2em 0;
-					min-height: 0;
+					min-height: 100vh;
 				}
 
 					body.is-ie .wrapper.fullscreen {
@@ -3935,6 +3935,7 @@ input, select, textarea {
 
 .clients h3 {
 	font-size: 1.9em;
+	margin-bottom: 40px;
 }
 
 section.clients > div:nth-child(2) {
@@ -3960,4 +3961,37 @@ section.clients > div:nth-child(2) > img {
 section.clients > div:nth-child(3) > img {
     width: 30%;
     padding: 20px;
+}
+
+@media screen and (max-width: 736px) {
+   html {
+	text-align: center !important;
+   }
+   
+   #two > div > div > section > span { 
+	left: calc(50% - 20px) !important;
+   }
+   
+   #two > div > div > section.clients > div {
+	display: inline-grid;
+        margin: 0px;
+   }
+
+   #two > div > div > section.clients > div > img {
+	width: 100%;
+        padding: 30px;
+   }
+   .inner {
+	width: 80% !important;
+   	margin-left: 10%;
+	padding: 0px !important;
+        top: 25px;
+        position: absolute;
+   }
+   
+   .inner > h1 > img {
+	width: 66% !important;
+	margin-left: 17% !important;
+  	margin-right: 17% !important;
+   }
 }
