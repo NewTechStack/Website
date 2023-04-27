@@ -25,7 +25,7 @@ services:
       LETSENCRYPT_EMAIL: ${EMAIL}
 
   php:
-    image: php:fpm-alpine
+    build: ./front/php
     container_name: php
     volumes:
       - ./front/web/front:/script:ro
@@ -41,3 +41,33 @@ services:
       - ./front/error/conf/error.conf:/etc/nginx/conf.d/default.conf:ro
     networks:
       - proxy
+
+  posteio:
+    image: analogic/poste.io:2.3.7
+    container_name: poste.io
+    restart: always
+    ports:
+       - 0.0.0.0:25:25
+       - 110:110
+       - 143:143
+       - 465:465
+       - 587:587
+       - 993:993
+       - 995:995
+       - 4190:4190
+    expose:
+       - 80
+    volumes:
+       - ./mail/posteio:/data
+    environment:
+       TZ: Europe/Prague
+       HTTPS: 'OFF'
+       VIRTUAL_HOST: mail.${DOMAIN},mail.${DOMAIN}
+       VIRTUAL_PORT: 80
+       LETSENCRYPT_HOST: mail.${DOMAIN},mail.${DOMAIN}
+       LETSENCRYPT_EMAIL: ${EMAIL}
+       DISABLE_CLAMAV: "TRUE"
+       DISABLE_RSPAMD: "TRUE"
+       HTTPS: 'OFF'
+    networks:
+       - proxy
